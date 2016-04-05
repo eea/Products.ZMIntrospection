@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.1 (unreleased)
+0.3.1 (2016-04-05)
 ------------------
 
 - Also introspect OOBTree and OIBTree objects (e.g. __annotations__)
