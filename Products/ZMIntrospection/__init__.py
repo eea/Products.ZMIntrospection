@@ -22,6 +22,7 @@ __refresh_module__ = 0
 
 import cgi
 from BTrees import OOBTree, OIBTree
+from persistent.list import PersistentList
 
 def introspection(self):
     secman = getSecurityManager()
@@ -46,7 +47,7 @@ def introspection(self):
     except TypeError:
         object_vars = [(key, obj[key]) for key in obj]
 
-    object_vars.sort()
+    sorted(object_vars)
     for attr_name, attr_value in object_vars:
         if not path:
             attr_path = attr_name
@@ -57,6 +58,14 @@ def introspection(self):
             new_value = {}
             for name in attr_value:
                 new_value[name] = attr_value[name]
+        elif isinstance(attr_value, list):
+            new_value = []
+            for val in attr_value:
+                try:
+                    new_val = vars(val)
+                except:
+                    new_val = val
+                new_value.append(new_val)
         else:
             new_value = attr_value
             try:
@@ -67,7 +76,7 @@ def introspection(self):
         res.append({
             'attr_path': attr_path,
             'attr_name': attr_name,
-            'attr_type': u'%s' % type(attr_value),
+            'attr_type': '%s' % type(attr_value),
             'attr_value': pprint.pformat(new_value, indent=2)
         })
     return res
@@ -75,7 +84,7 @@ def introspection(self):
 # Monkey-patching. Yuck.
 try:
     import pprint
-    from Globals import HTMLFile
+    from App.special_dtml import DTMLFile
     from App.Management import Tabs
     from OFS.SimpleItem import Item
     from AccessControl import getSecurityManager, Unauthorized
@@ -93,7 +102,7 @@ try:
     Tabs._oldxxx_filtered_manage_options = Tabs.filtered_manage_options
     Tabs.filtered_manage_options = filtered_manage_options
 
-    Item.manage_introspection = HTMLFile('zmi/manage_introspection', globals())
+    Item.manage_introspection = DTMLFile('zmi/manage_introspection', globals())
     Item.introspection = introspection
 
     import logging

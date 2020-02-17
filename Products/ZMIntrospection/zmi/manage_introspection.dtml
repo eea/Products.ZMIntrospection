@@ -5,13 +5,16 @@
 
 <h2>Attributes</h2>
 
-<table>
-<tr class="list-header">
- <th>Attr</th>
- <th>Value</th>
- <th>Type</th>
-</tr>
+<table class="table table-striped table-hover table-sm objectItems">
+  <thead class="thead-light sorted_">
+    <tr class="list-header">
+      <th>Attr</th>
+      <th>Value</th>
+      <th>Type</th>
+    </tr>
+  </thead>
 <dtml-in introspection>
+<tbody>
 <tr class="row-hilite">
 <dtml-if "_['sequence-item']['attr_path']">
 <td><a href="?path=<dtml-var "_['sequence-item']['attr_path']">"><dtml-var "_['sequence-item']['attr_name']"></a></td>
@@ -21,6 +24,7 @@
 <td><dtml-var "_['sequence-item']['attr_value']" html_quote></td>
 <td><dtml-var "_['sequence-item']['attr_type']" html_quote></td>
 </tr>
+</tbody>
 </dtml-in>
 </table>
 

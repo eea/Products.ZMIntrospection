@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.3.2.dev0'
+version = '1.0'
 
 setup(name='Products.ZMIntrospection',
       version=version,
