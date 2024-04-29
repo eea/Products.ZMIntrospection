@@ -52,7 +52,7 @@ def introspection(self):
         if not path:
             attr_path = attr_name
         else:
-            attr_path = path + '/%s' % attr_name
+            attr_path = path + '/%s' % (attr_name, )
 
         if isinstance(attr_value, (OOBTree.OOBTree, OIBTree.OIBTree, IOBTree.IOBTree, IIBTree.IIBTree)):
             new_value = {}
