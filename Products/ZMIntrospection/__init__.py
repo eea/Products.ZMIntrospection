@@ -21,7 +21,7 @@
 __refresh_module__ = 0
 
 import cgi
-from BTrees import OOBTree, OIBTree
+from BTrees import OOBTree, OIBTree, IOBTree, IIBTree
 from persistent.list import PersistentList
 
 def introspection(self):
@@ -52,9 +52,9 @@ def introspection(self):
         if not path:
             attr_path = attr_name
         else:
-            attr_path = path + '/' + attr_name
+            attr_path = path + '/%s' % attr_name
 
-        if isinstance(attr_value, (OOBTree.OOBTree, OIBTree.OIBTree)):
+        if isinstance(attr_value, (OOBTree.OOBTree, OIBTree.OIBTree, IOBTree.IOBTree, IIBTree.IIBTree)):
             new_value = {}
             for name in attr_value:
                 new_value[name] = attr_value[name]
@@ -63,14 +63,14 @@ def introspection(self):
             for val in attr_value:
                 try:
                     new_val = vars(val)
-                except:
+                except Exception:
                     new_val = val
                 new_value.append(new_val)
         else:
             new_value = attr_value
             try:
                 attr_vars = vars(new_value)
-            except:
+            except Exception:
                 attr_path = ''
 
         res.append({
