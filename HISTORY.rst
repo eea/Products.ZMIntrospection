@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.3 (2024-06-03)
+----------------
+
+- Fix previous broken release. Missing manage_introspection.dtml. @avoinea
+
 1.2 (2024-06-03)
 ----------------
 
