@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.1 (2024-06-03)
+----------------
+
+- Add introspection also for IOBTree and IIBTree. @avoinea
+
+- fix: OOBTree with tuple keys. avoinea
+
+
 1.0 (2020-02-17)
 ----------------
 - Zope4 / Python3 support
