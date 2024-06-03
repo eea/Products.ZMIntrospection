@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.1'
+version = '1.2'
 
 setup(name='Products.ZMIntrospection',
       version=version,
       description="Append an Introspection tab to an object's management tabs.",
       long_description=open("README.rst").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+                       open("HISTORY.txt").read(),
       classifiers=[
         'Framework :: Zope2',
         'Intended Audience :: Developers',
